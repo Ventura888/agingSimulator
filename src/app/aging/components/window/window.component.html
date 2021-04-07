@@ -1,0 +1,77 @@
+<div class="header-info header-aging">
+  <div class="aging-title">
+    Aging Simulator
+    <div class="sheltoms-near-title">
+      <img class="shake-lr" src="assets/stacked_sheltoms.png"/>
+    </div>
+  </div>
+
+  <div class="guide-aging-window">
+
+    <div class="aging-description fade-in-left">
+
+        <div *ngIf="!isBroken && currentAge != 20" class="how-aging-works-title">Current Age: {{currentAge}}</div>
+        <div *ngIf="currentAge !== 20 && !isBroken" (click)="onMakeAge()" class="particletext fade-in-delay-3">AGE</div>
+        <div  style="display: flex; margin-top: 5px; margin-bottom: 5px;" *ngIf="currentAge > 4 && currentAge <20 && !isBroken">
+          <div class="copper-question">Copper Ore?</div>
+          <div class="copper-answer" [style.backgroundColor]="isCopper ? '#ffa216': 'transparent'" [style.color]="isCopper ? 'black': '#e1e1e1'" (click)="onUseCopper()">Yes</div>
+          <div class="copper-answer" [style.backgroundColor]="!isCopper ? '#ffa216': 'transparent'" [style.color]="!isCopper ? 'black': '#e1e1e1'"  (click)="onRemoveCopper()">No</div>
+        </div>
+
+
+      <div class="how-aging-works-title" *ngIf="isBroken">
+        Item broken at attempting {{currentAge + 1}}
+      </div>
+
+      <div class="how-aging-works-title" *ngIf="!isBroken && currentAge == 20">
+        Item is +20! congrats!
+      </div>
+
+      <div style="margin-top: 10px">
+        <div class="statistic-number"><img height="22" src="assets/gold.png" /> {{totalGold}}</div>
+        <div class="statistic-number"><img height="22" src="assets/copper.png" /> {{totalCoppers}}</div>
+        <div class="statistic-number"><img height="22" src="assets/fadeo.png" /> {{totalFadeo}}</div>
+        <div class="statistic-number"><img height="22" src="assets/sparky.png" /> {{totalSparky}}</div>
+        <div class="statistic-number"><img height="22" src="assets/raident.png" /> {{totalRaident}}</div>
+        <div class="statistic-number"><img height="22" src="assets/transparo.png" /> {{totalTransparo}}</div>
+        <div class="statistic-number"><img height="22" src="assets/murky.png" /> {{totalMurky}}</div>
+        <div class="statistic-number"><img height="22" src="assets/devine.png" /> {{totalDevine}}</div>
+        <div class="statistic-number"><img height="22" src="assets/celesto.png" /> {{totalCelesto}}</div>
+        <div class="statistic-number"><img height="22" src="assets/mirage.png" /> {{totalMirage}}</div>
+        <div class="statistic-number"><img height="22" src="assets/inferna.png" /> {{totalInferna}}</div>
+        <div class="statistic-number"><img height="22" src="assets/enigma.png" /> {{totalEnigma}}</div>
+        <div class="statistic-number"><img height="22" src="assets/bellum.png" /> {{totalBellum}}</div>
+        <div class="statistic-number"><img height="22" src="assets/oredo.png" /> {{totalOredo}}</div>
+      </div>
+    </div>
+
+
+    <div class="mixing-morald-image fade-in-right">
+      <div class='speech-bubble' *ngIf="isBroken">
+        <span style="color: black">
+          Oops!
+        </span>
+
+      </div>
+      <img src="assets/morif.png">
+      <div>Arcane's pupil Newtor</div>
+    </div>
+
+  </div>
+
+  <div class="aging-title" *ngIf="log.length > 0">
+    History Log
+    <div class="sheltoms-near-title">
+      <img class="shake-lr" src="assets/stacked_sheltoms.png"/>
+    </div>
+  </div>
+
+  <div style="width: 1200px;
+    max-width: 100%; margin-right: auto;
+margin-left: auto; text-align: left; padding-left: 100px;" *ngFor="let logRow of log">
+    {{logRow}}
+  </div>
+
+</div>
+
+<div class="footer">Another one by Ventura</div>
