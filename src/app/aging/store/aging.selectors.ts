@@ -17,3 +17,5 @@ export const isCopperSelector = createSelector(ageFeatureState, (state: AgeState
 export const totalCoppersSelector = createSelector(ageFeatureState, (state: AgeStateInterface) => state.copperCount);
 
 export const logSelector = createSelector(ageFeatureState, (state: AgeStateInterface) => state.combinedLog);
+
+export const isAutomaticModeSelector = createSelector(ageFeatureState, (state: AgeStateInterface) => state.isAutomaticMode);

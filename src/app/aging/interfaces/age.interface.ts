@@ -7,6 +7,7 @@ export interface AgeStateInterface {
   log: Array<number>;
   copperCount: number;
   combinedLog: Array<string>;
+  isAutomaticMode: boolean;
 }
 
 export enum Sheltom {

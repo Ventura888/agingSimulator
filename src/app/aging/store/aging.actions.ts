@@ -9,7 +9,9 @@ export enum AgeActionTypes {
   BREAK_ITEM = 'BREAK_ITEM',
   SET_COPPER_STATUS = 'SET_COPPER_STATUS',
   INCREASE_COPPER_COUNT = 'INCREASE_COPPER_COUNT',
-  ADD_TO_COMBINED_LOG = 'ADD_TO_COMBINED_LOG'
+  ADD_TO_COMBINED_LOG = 'ADD_TO_COMBINED_LOG',
+  RESET_STATE = 'RESET_STATE',
+  SET_AUTOMATIC_MODE = 'SET_AUTOMATIC_MODE'
 }
 
 export type AgeActions =
@@ -21,7 +23,9 @@ export type AgeActions =
   BreakItem |
   SetCopperStatus |
   IncreaseCopperCount |
-  AddToCombinedLog
+  AddToCombinedLog |
+  ResetState |
+  SetAutomaticMode
 
 
 
@@ -103,4 +107,23 @@ export class AddToCombinedLog implements Action {
   readonly type = AgeActionTypes.ADD_TO_COMBINED_LOG;
 
   constructor(public payload: AddToCombinedLogPayload) {}
+}
+
+
+export class ResetState implements Action {
+  readonly type = AgeActionTypes.RESET_STATE;
+
+  constructor() {}
+}
+
+
+
+export interface SetAutomaticModePayload {
+  isAutomatic: boolean;
+}
+
+export class SetAutomaticMode implements Action {
+  readonly type = AgeActionTypes.SET_AUTOMATIC_MODE;
+
+  constructor(public payload: SetAutomaticModePayload) {}
 }

@@ -1,6 +1,6 @@
 <div class="header-info header-aging">
   <div class="aging-title">
-    Aging Simulator
+    Aging Simulator {{isAutomaticMode}}
     <div class="sheltoms-near-title">
       <img class="shake-lr" src="assets/stacked_sheltoms.png"/>
     </div>
@@ -17,15 +17,21 @@
           <div class="copper-answer" [style.backgroundColor]="isCopper ? '#ffa216': 'transparent'" [style.color]="isCopper ? 'black': '#e1e1e1'" (click)="onUseCopper()">Yes</div>
           <div class="copper-answer" [style.backgroundColor]="!isCopper ? '#ffa216': 'transparent'" [style.color]="!isCopper ? 'black': '#e1e1e1'"  (click)="onRemoveCopper()">No</div>
         </div>
+<!--      <div  style="display: flex; margin-top: 5px; margin-bottom: 5px;" *ngIf="currentAge > 4 && currentAge <20 && !isBroken">-->
+<!--        <div class="automate-link" (click)="automate()">Click to automate</div>-->
+<!--      </div>-->
 
 
       <div class="how-aging-works-title" *ngIf="isBroken">
         Item broken at attempting {{currentAge + 1}}
       </div>
 
+
       <div class="how-aging-works-title" *ngIf="!isBroken && currentAge == 20">
         Item is +20! congrats!
       </div>
+
+      <div *ngIf="isBroken || (!isBroken && currentAge == 20)" (click)="reset()" class="particletext fade-in-delay-3">RESET</div>
 
       <div style="margin-top: 10px">
         <div class="statistic-number"><img height="22" src="assets/gold.png" /> {{totalGold}}</div>

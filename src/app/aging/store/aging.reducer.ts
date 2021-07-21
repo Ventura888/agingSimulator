@@ -6,7 +6,7 @@ import {
   AddToTotalSheltoms,
   AgeActions,
   AgeActionTypes,
-  SetAgeChange,
+  SetAgeChange, SetAutomaticMode,
   SetCopperStatus
 } from './aging.actions';
 
@@ -56,6 +56,23 @@ export function ageReducer(state: AgeStateInterface = ageInitState, action: AgeA
       const stringToPush = `Got ${ageResult} attempting ${currentAge}`
       combinedLogClone.push(stringToPush)
       return {...state, combinedLog: combinedLogClone}
+    }
+
+    case AgeActionTypes.SET_AUTOMATIC_MODE: {
+      return {...state, isAutomaticMode: (action as SetAutomaticMode).payload.isAutomatic}
+    }
+
+    case AgeActionTypes.RESET_STATE: {
+      return {currentAge: 0,
+        totalUsedSheltoms: [],
+        totalGold: 0,
+        isBroken: false,
+        isCopper: false,
+        log: [],
+        copperCount: 0,
+        combinedLog: [],
+        isAutomaticMode: false
+      }
     }
 
     default: {

@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
-  currentAgeSelector,
+  currentAgeSelector, isAutomaticModeSelector,
   isBrokenSelector,
   isCopperSelector, logSelector, totalCoppersSelector,
   totalGoldSelector,
   totalSheltomsSelector
 } from '../../store/aging.selectors';
 import { map, tap } from 'rxjs/operators';
-import { IncreaseAgeByOne, MakeAgeReq, SetAgeChange, SetCopperStatus } from '../../store/aging.actions';
+import { IncreaseAgeByOne, MakeAgeReq, ResetState, SetAgeChange, SetAutomaticMode, SetCopperStatus } from '../../store/aging.actions';
 import { Sheltom } from '../../interfaces/age.interface';
 
 @Component({
@@ -83,6 +83,14 @@ export class WindowComponent implements OnInit, OnDestroy {
   );
 
 
+  isAutomaticMode;
+  isAutomaticMode$ = this.store.pipe(
+    select(isAutomaticModeSelector),
+    map(isAutomaticMode => isAutomaticMode),
+    tap(isAutomaticMode => this.isAutomaticMode = isAutomaticMode)
+  );
+
+
   constructor(private store: Store<any>) {
   }
 
@@ -94,7 +102,8 @@ export class WindowComponent implements OnInit, OnDestroy {
       this.isBroken$.subscribe(),
       this.isCopper$.subscribe(),
       this.totalCoppers$.subscribe(),
-      this.log$.subscribe()
+      this.log$.subscribe(),
+      this.isAutomaticMode$.subscribe()
     );
   }
 
@@ -120,6 +129,37 @@ export class WindowComponent implements OnInit, OnDestroy {
 
   onRemoveCopper() {
     this.store.dispatch(new SetCopperStatus({isCopper: false}))
+  }
+
+  automate() {
+    // const ageInterval = setInterval(() => {
+    //   this.onMakeAge()
+    // }, 90)
+    // if (this.currentAge > 4 && this.currentAge < 20 && !this.isBroken && !this.isAutomaticMode) {
+    //   this.store.dispatch(new SetAutomaticMode({isAutomatic: true}))
+    //   return ageInterval
+    // } else if (this.isBroken) {
+    //   clearInterval(ageInterval)
+    //   this.store.dispatch(new SetAutomaticMode({isAutomatic: true}))
+    // }
+
+  }
+
+  reset() {
+    this.store.dispatch(new ResetState())
+
+    this.totalFadeo = 0
+    this.totalSparky = 0
+    this.totalRaident = 0
+    this.totalTransparo = 0
+    this.totalMurky = 0
+    this.totalDevine = 0
+    this.totalCelesto = 0
+    this.totalMirage = 0
+    this.totalInferna = 0
+    this.totalEnigma = 0
+    this.totalBellum = 0
+    this.totalOredo = 0
   }
 
   ngOnDestroy() {

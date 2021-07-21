@@ -8,5 +8,6 @@ export const ageInitState: AgeStateInterface = {
   isCopper: false,
   log: [],
   copperCount: 0,
-  combinedLog: []
+  combinedLog: [],
+  isAutomaticMode: false
 }
